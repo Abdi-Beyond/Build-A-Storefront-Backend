@@ -1,0 +1,63 @@
+{
+  "name": "build-a-storefront-backend",
+  "version": "1.0.0",
+  "description": "udacity Project",
+  "main": "server.ts",
+  "scripts": {
+    "start": "node src/server.ts",
+    
+
+    "jasmine-ts": "jasmine-ts",
+    "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
+    "test-up": "docker-compose -f docker-compose-test.yml up -d",
+    "test-down": "docker-compose -f docker-compose-test.yml down",
+    "test": "npm run test-up && cross-env NOED_ENV=test && npx tsc && jasmine --config=spec/support/jasmine.json && npm run test-down",
+    "tsc": "tsc",
+    "lint": "eslint ./src/**/*.ts",
+    "prettier": "prettier --config .prettierrc ./src/**/*.ts --write",
+    "lint_fixer": "eslint ./src/**/*.ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdi-Beyond/Build-A-Storefront-Backend.git"
+  },
+  "author": "Abdi Abader",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdi-Beyond/Build-A-Storefront-Backend/issues"
+  },
+  "homepage": "https://github.com/Abdi-Beyond/Build-A-Storefront-Backend#readme",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.15",
+    "@types/jasmine": "^4.3.1",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/pg": "^8.6.6",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.32.1",
+    "jasmine": "^4.5.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.4.0",
+    "prettier": "^2.8.3",
+    "supertest": "^6.3.3",
+    "ts-node": "^10.9.1",
+    "ts-watch": "^1.0.8",
+    "tsc-watch": "^6.0.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.8.0"
+  }
+}
