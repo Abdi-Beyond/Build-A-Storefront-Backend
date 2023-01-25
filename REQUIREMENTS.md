@@ -39,16 +39,16 @@ All APi routes
 
 #### All api routes
 
-app.get('/orders', authorizeChecker, current_orders),
-app.get('/orders/completed', authorizeChecker, completed_orders),
-app.post('/orders/', authorizeChecker, create),
-app.patch('/orders/:id',authorizeChecker, update_order);
+- app.get('/orders', authorizeChecker, current_orders),
+- pp.get('/orders/completed', authorizeChecker, completed_orders),
+- app.post('/orders/', authorizeChecker, create),
+- app.patch('/orders/:id',authorizeChecker, update_order);
 
 #### All api rotes for products in orders
-app.get('/productinorder', authorizeChecker, productinorder),
-app.patch('/updateproductquantity', authorizeChecker, updateproductquantity),
-app.delete('/deleteproductfromorder', authorizeChecker, deleteproductfromorder),
-app.post('/addproducttoorder', authorizeChecker, addproducttoorder)
+- app.get('/productinorder', authorizeChecker, productinorder),
+- app.patch('/updateproductquantity', authorizeChecker, updateproductquantity),
+- app.delete('/deleteproductfromorder', authorizeChecker, deleteproductfromorder),
+- app.post('/addproducttoorder', authorizeChecker, addproducttoorder)
 
 
 ## Data Shapes
