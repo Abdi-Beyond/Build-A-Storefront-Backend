@@ -70,3 +70,6 @@ app.post('/addproducttoorder', authorizeChecker, addproducttoorder)
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+
+## Database
+![alt text](https://github.com/Abdi-Beyond/Build-A-Storefront-Backend/blob/main/Db%20schema.png?raw=true)
