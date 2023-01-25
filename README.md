@@ -45,10 +45,54 @@ grant all privileges on database store_database to store_user;
 grant all privileges on database store_database_test to store_user_test;
 
 ```
-## To Start 
+## Scripts
 
+```
+npm run watch 
 
+npm run test
 
+npm run 
+
+```
+## Installed packages
+
+### Development
+```
+
+    npm install bcrypt
+    npm install body-parser
+    npm install db-migrate
+    npm install db-migrate-pg
+    npm install dotenv
+    npm install express
+    npm install jsonwebtoken
+    npm install pg
+  
+```
+
+### Dev 
+
+```
+    npm i @types/bcrypt --save-dev
+    npm i @types/express --save-dev
+    npm i @types/jasmine --save-dev
+    npm i @types/jsonwebtoken --save-dev
+    npm i @types/pg --save-dev --save-dev
+    npm i @typescript-eslint/eslint-plugin --save-dev
+    npm i cross-env --save-dev
+    npm i eslint --save-dev
+    npm i eslint-config-prettier --save-dev
+    npm i eslint-plugin-prettier --save-dev
+    npm i eslint-plugin-react --save-dev
+   npm i  jasmine --save-dev
+    npm i jasmine-spec-reporter --save-dev
+    npm i jasmine-ts --save-dev
+    npm i supertest --save-dev
+    npm i ts-node --save-dev
+    npm i ts-watch --save-dev
+    npm i typescript --save-dev
+   ```
 
 ## Author
 
