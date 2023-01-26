@@ -1,3 +1,4 @@
 .env
 build
 tsconfig.json
+node_modules
