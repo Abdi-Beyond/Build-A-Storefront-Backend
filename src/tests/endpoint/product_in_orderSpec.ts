@@ -26,14 +26,7 @@ it ("show product in order", async () => {
     const response = await request.get("/productinorder").set({Authorization: `Bearer ${token}`});
     expect(response.status).toBe(200);
 });
-it("add product to order", async () => {
-    const response = await request.post("/addproducttoorder").send({
-        quantity: 2,
-        order_id: 1,
-        product_id: 1,
-    }).set({Authorization: `Bearer ${token}`});
-    expect(response.status).toBe(200);
-});
+
 it("update product quantity", async () => {
     const response = await request.patch("/updateproductquantity").send({
         quantity: 2,

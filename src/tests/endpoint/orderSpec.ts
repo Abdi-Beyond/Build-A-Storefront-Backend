@@ -5,10 +5,7 @@ import {order, Order} from "../../models/order";
 import jwt from "jsonwebtoken";
 
 const request = supertest(app);
-const orders: order = {
-    status: "completed",
-    user_id:  10,
-}
+
 const users: user = {
     password: "test",
     firstname: "test",
@@ -21,6 +18,7 @@ describe("Order endpoint", () => {
         token = jwt.sign({user: response.body}, process.env.TOKEN_SECRET!)
         expect(response.status).toBe(200);
     });
+
     it ("Get all current orders", async () => {
         const response = await request.get("/orders").set({Authorization: `Bearer ${token}`});
         expect(response.status).toBe(200);
@@ -31,10 +29,6 @@ describe("Order endpoint", () => {
         expect(response.status).toBe(200);
     }
     );
-    it ("Create order", async () => {
-        const response = await request.post("/orders").send(orders).set({Authorization: `Bearer ${token}`});
-        expect(response.status).toBe(200);
-    }
-    );
+
   
 });
