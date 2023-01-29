@@ -5,7 +5,15 @@ Udacity's 2nd Project for Full Stack JavaScript Developer.
 
 Storefront Backend is a RESTful API that allows users to perform CRUD operations on a database of products. The API is built using Node.js, Express, and postgresql. The API is tested using Jasmine and Supertest.
 
-## .env
+### Port for database
+
+```
+
+port : 5432
+
+```
+
+## .env file to store environment variables
 
 ```
 POSTGRES_HOST=127.0.0.1
@@ -45,17 +53,29 @@ grant all privileges on database store_database to store_user;
 grant all privileges on database store_database_test to store_user_test;
 
 ```
-## Scripts
+### to start the database maigration
+```
+db-migrate up
+```
+
+### to drop the database maigration
+```
+db-migrate down
+```
+
+
+## Scripts to run the application
 
 ```
 npm run watch 
 
-npm run test
-
-npm run 
-
 ```
-## Installed packages
+## To Run the test
+```
+npm run test
+npm run test-docker
+```
+## Scripts to install packages
 
 ### Development
 ```

@@ -16,8 +16,15 @@ productRouter(app);
 orderRouter(app);
 productRouter(app);
 productinorderRouter(app);
-app.listen(50003, () => {
+if (process.env.NODE_ENV === 'test') {
+    app.listen(3000, () => {
+        console.log("starting app on: 50005");
+    });
+}
+    else {
+app.listen(50000, () => {
     console.log("starting app on: 0.0.0.0:3000");
 }); 
+    }
 
 export default app;

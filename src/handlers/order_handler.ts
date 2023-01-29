@@ -48,11 +48,21 @@ const completed_orders = async (_req: Request, res: Response) => {
         res.status(400).json(err);
     }
 };
+const delete_order = async (req: Request, res: Response) => {
+    try {
+        const orders = await neworder.delete_order(Number(req.params.id));
+        res.json(orders);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+};
+
 const orderRouter = (app: express.Application) => {
     app.get('/orders', authorizeChecker, current_orders),
         app.get('/orders/completed', authorizeChecker, completed_orders),
         app.post('/orders/', authorizeChecker, create),
         app.patch('/orders/:id', authorizeChecker, update_order);
+    app.delete('/orders/:id', authorizeChecker, delete_order);
 };
 
 export default orderRouter;

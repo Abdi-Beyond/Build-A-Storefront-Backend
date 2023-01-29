@@ -90,11 +90,15 @@ export class Product {
         }
     }
 
-    async category_products(category: string): Promise<product[]> {
+    async category_products(category: string): Promise<product[] | string> {
         try {
             const query6 = 'SELECT * FROM products WHERE category=($1)';
             const con = await client.connect();
             const result = await con.query(query6, [category]);
+            if (result.rows.length === 0) {
+                con.release();
+                return 'No products in this category';
+            }
             con.release();
             return result.rows;
         } catch (err) {

@@ -5,7 +5,14 @@ import {order, Order} from "../../models/order";
 import jwt from "jsonwebtoken";
 
 const request = supertest(app);
-
+const neworder: order = {
+    user_id : 2,
+    status: "test2",
+}
+const o: order = {
+    user_id : 1,
+    status: "test",
+}
 const users: user = {
     password: "test",
     firstname: "test",
@@ -22,13 +29,38 @@ describe("Order endpoint", () => {
     it ("Get all current orders", async () => {
         const response = await request.get("/orders").set({Authorization: `Bearer ${token}`});
         expect(response.status).toBe(200);
+        
     }
     );
+    
     it ("Completed order", async () => {
         const response = await  request.get("/orders/completed").set({Authorization: `Bearer ${token}`});
         expect(response.status).toBe(200);
     }
     );
+    it ("Create order ", async() => {
+        const response = await request.post("/orders").send(o).set({Authorization: `Bearer ${token}`});
+        expect(response.status).toBe(200);
+        if (response.body.id === 1) {
+      
+        
+            expect(response.body.message).toBe("User does not exist");
+        }
+    }
+    );
 
+    
+    it ("Update order", async () => {
+        const response = await request.patch("/orders/1").send(o).set({Authorization: `Bearer ${token}`});
+        expect(response.status).toBe(200);
+
+    }
+    );
+    
+    it("Delete", async () => {
+        const response = await request.delete("/orders/1").set({Authorization: `Bearer ${token}`});
+        expect(response.status).toBe(200)
+    }
+    );
   
 });

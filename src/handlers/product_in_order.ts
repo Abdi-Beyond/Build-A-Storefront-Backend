@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
-import { Dashboard } from '../services/dashboard';
+import { Dashboard, productorder } from '../services/dashboard';
 import { authorizeChecker } from '../middleware/authrize_checker_jwt';
+
 
 const dashboard = new Dashboard();
 
@@ -12,14 +13,14 @@ const productinorder = async (_req: Request, res: Response) => {
         res.status(400).json(err);
     }
 };
-const addproducttoorder = async (req: Request, res: Response) => {
+const addproducttorder = async (req: Request, res: Response) => {
     try {
-        const pro = {
-            quantity: req.body.quantity,
+        const pro: productorder = {
             order_id: req.body.order_id,
             product_id: req.body.product_id,
+            quantity: req.body.quantity,
         };
-        const products = await dashboard.addproducttoorder(pro);
+        const products = await dashboard.addproducttorder(pro);
         res.json(products);
     } catch (err) {
         res.status(400).json(err);
@@ -63,6 +64,6 @@ const productinorderRouter = (app: express.Application) => {
             authorizeChecker,
             deleteproductfromorder
         ),
-        app.post('/addproducttoorder', authorizeChecker, addproducttoorder);
+        app.post('/addproducttorder', authorizeChecker, addproducttorder);
 };
 export default productinorderRouter;
