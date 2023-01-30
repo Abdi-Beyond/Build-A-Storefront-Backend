@@ -12,7 +12,7 @@
     "test-up": "docker-compose -f docker-compose.yml up -d",
     "test-down": "docker-compose -f docker-compose.yml down",
     "test-docker": "set ENV=test && npm run test-up --env test && cross-env ENV=test && npx tsc && jasmine --config=spec/support/jasmine.json && npm run test-down --env test",
-    "test-local": "cross-env ENV=test && db-migrate up && npx tsc && jasmine --config=spec/support/jasmine.json && db-migrate down",
+    "test-local": "set ENV=test && db-migrate up && cross-env ENV=test && npx tsc && jasmine --config=spec/support/jasmine.json && db-migrate down -c 4",
     "lint": "eslint ./src/**/*.ts",
     "prettier": "prettier --config .prettierrc ./src/**/*.ts --write",
     "lint_fixer": "eslint ./src/**/*.ts --fix"

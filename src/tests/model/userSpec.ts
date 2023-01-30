@@ -36,7 +36,7 @@ describe("Test Model for User", () => {
         const result = await newuser.delete_user(10);
         
         if (typeof result !== 'string') {
-            expect(result).toBeGreaterThan(0);
+            expect(result.id).toBeGreaterThan(0);
         }
         else{
             expect(result).toBe('User does not exist');

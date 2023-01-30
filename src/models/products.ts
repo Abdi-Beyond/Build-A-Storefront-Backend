@@ -80,17 +80,17 @@ export class Product {
     }
     async delete_product(id: number): Promise<product | string> {
         try {
-            const query = 'SELECT * FROM products WHERE id=($1)';
-            const query5 = 'DELETE FROM products WHERE id=($1)';
+         
+            const query5 = 'DELETE FROM products WHERE id=($1) RETURNING *';
             const con = await client.connect();
-            const result1 = await con.query(query, [id]);
-            if (result1.rows.length === 0) {
-                con.release();
-                return 'Product does not exist';
-            }
             const result2 = await con.query(query5, [id]);
+            if (result2.rows.length === 0) {
+            con.release();
+            return 'Product does not exist';            }
+            else{
             con.release();
             return result2.rows[0];
+            }
         } catch (err) {
             throw new Error('Could not delete product from database: ${err}');
         }

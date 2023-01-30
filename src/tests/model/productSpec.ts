@@ -34,11 +34,13 @@ describe("Test Model for Product", () => {
         expect(result.id).toBeGreaterThan(0);
     }
     );
-it ("should delete a product", async () => {
+it ("should delete a products on id", async () => {
     const result = await newproduct.delete_product(1);
-    expect(result).toBeTruthy();
+    
     if (typeof result !== 'string') {
-        expect(result).toBeGreaterThan(0);
+      
+        expect(result.name).toBe('test2');
+        expect(result).toBeTruthy();
     }
     else {
         expect(result).toBe('Product does not exist');
@@ -63,16 +65,6 @@ it ("should update a product", async () => {
 
 
 );
-it ("should delete a product", async () => {
-    const result = await newproduct.delete_product(2);
-    expect(result).toBeTruthy();
-    if (typeof result !== 'string') {
-        expect(result).toBeGreaterThan(0);
-    }
-    else {
-        expect(result).toBe('Product does not exist');
-    }
-}
-);
+
 }
 );
