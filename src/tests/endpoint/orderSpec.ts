@@ -26,6 +26,7 @@ describe("Order endpoint", () => {
         expect(response.status).toBe(200);
     });
 
+
     it ("Get all current orders", async () => {
         const response = await request.get("/orders").set({Authorization: `Bearer ${token}`});
         expect(response.status).toBe(200);

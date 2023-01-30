@@ -6,13 +6,13 @@ exports.__esModule = true;
 var dotenv_1 = __importDefault(require("dotenv"));
 var pg_1 = require("pg");
 dotenv_1["default"].config();
-var _a = process.env, POSTGRES_HOST = _a.POSTGRES_HOST, POSTGRES_DB = _a.POSTGRES_DB, POSTGRES_DB_TEST = _a.POSTGRES_DB_TEST, POSTGRES_USER = _a.POSTGRES_USER, POSTGRES_PASSWORD = _a.POSTGRES_PASSWORD, POSTGES_PORT = _a.POSTGES_PORT, ENV = _a.ENV;
+var _a = process.env, POSTGRES_HOST = _a.POSTGRES_HOST, POSTGRES_DB = _a.POSTGRES_DB, POSTGRES_DB_TEST = _a.POSTGRES_DB_TEST, POSTGRES_USER = _a.POSTGRES_USER, POSTGRES_USER_TEST = _a.POSTGRES_USER_TEST, POSTGRES_PASSWORD = _a.POSTGRES_PASSWORD, POSTGES_PORT = _a.POSTGES_PORT, ENV = _a.ENV;
 var client;
-if (ENV == 'test') {
+if (ENV === 'test') {
     client = new pg_1.Pool({
         host: POSTGRES_HOST,
         database: POSTGRES_DB_TEST,
-        user: POSTGRES_USER,
+        user: POSTGRES_USER_TEST,
         password: POSTGRES_PASSWORD,
         port: Number(POSTGES_PORT)
     });

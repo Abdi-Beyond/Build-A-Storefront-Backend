@@ -3,35 +3,76 @@ import { product, Product } from "../../models/products";
 const newproduct = new Product();
 
 describe("Test Model for Product", () => {
-    it('list all products', () => {
-        expect(newproduct.index).toBeDefined();
-      }
-    );  
-    it('list one product', () => {
-        expect(newproduct.show).toBeDefined();
-      }
-    );
-    it('create a new product', () => {
-        expect(newproduct.create).toBeDefined();
-      }
-    );
-    it('update a product', () => {
-        expect(newproduct.update_product).toBeDefined();
-      }
-    );
-    it('delete a product', () => {
-        expect(newproduct.delete_product).toBeDefined();
-      }
-    );
-    it('list by category', () => {
-        expect(newproduct.category_products).toBeDefined();
-
-        }
+ it("should return all products", async () => {
+  const result = await newproduct.index();
+  expect
+  expect(result.length).toBeGreaterThan(0);
+  expect(result).toBeTruthy();
+  });
+ 
+ it ("should return a product by id", async () => {
+    const result = await newproduct.show(1);
+    if (typeof result !== 'string') {
+        expect(result).toBeTruthy();
+        expect(result.id).toBeGreaterThan(0);
+    }
+    else{
+        expect(result).toBe('Product does not exist');
+    }
     
-    );
-    it ('popularity', () => {
-        expect(newproduct.popular_products).toBeDefined();
+    
+    });
+
+    it ("should create a new product", async () => {
+        const newproducts: product = {
+            name: 'test',
+            price: 1,
+            category: 'test',
+        };
+        const result = await newproduct.create(newproducts);
+        expect(result).toBeTruthy();
+        expect(result.id).toBeGreaterThan(0);
     }
     );
+it ("should delete a product", async () => {
+    const result = await newproduct.delete_product(1);
+    expect(result).toBeTruthy();
+    if (typeof result !== 'string') {
+        expect(result).toBeGreaterThan(0);
+    }
+    else {
+        expect(result).toBe('Product does not exist');
+    }
+}
+);
+it ("should update a product", async () => {
+    const newproducts: product = {
+        name: 'test',
+        price: 2,
+        category: 'test',
+    };
+    const result = await newproduct.update_product(1, newproducts);
+    expect(result).toBeTruthy();
+    if (typeof result !== 'string') {
+        expect(result).toBeGreaterThan(0);
+    }
+    else {
+        expect(result).toBe('Product does not exist');
+    }
+}
+
+
+);
+it ("should delete a product", async () => {
+    const result = await newproduct.delete_product(2);
+    expect(result).toBeTruthy();
+    if (typeof result !== 'string') {
+        expect(result).toBeGreaterThan(0);
+    }
+    else {
+        expect(result).toBe('Product does not exist');
+    }
+}
+);
 }
 );

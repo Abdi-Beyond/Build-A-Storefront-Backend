@@ -46,12 +46,11 @@ var Dashboard = /** @class */ (function () {
     }
     Dashboard.prototype.productsinorder = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var query1, query2, con, result, err_1, err_2;
+            var query2, con, result, err_1, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 6, , 7]);
-                        query1 = 'SELECT EXISTS (SELECT * FROM order_product)';
                         query2 = 'SELECT * FROM products INNER JOIN order_product ON products.id=order_product.product_id  ORDER BY order_product.order_id';
                         return [4 /*yield*/, database_provider_1["default"].connect()];
                     case 1:
@@ -109,55 +108,69 @@ var Dashboard = /** @class */ (function () {
     };
     Dashboard.prototype.deleteproductfromorder = function (order_id, product_id) {
         return __awaiter(this, void 0, void 0, function () {
-            var query2, con, result2, err_4;
+            var query2, con, result2, err_4, err_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
+                        _a.trys.push([0, 6, , 7]);
                         query2 = 'DELETE FROM order_product WHERE order_id=($1) and product_id=($2) RETURNING *';
                         return [4 /*yield*/, database_provider_1["default"].connect()];
                     case 1:
                         con = _a.sent();
-                        return [4 /*yield*/, con.query(query2, [order_id, product_id])];
+                        _a.label = 2;
                     case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, con.query(query2, [order_id, product_id])];
+                    case 3:
                         result2 = _a.sent();
                         if (result2.rows.length === 0) {
                             return [2 /*return*/, 'cant delete product'];
                         }
                         con.release();
                         return [2 /*return*/, result2.rows[0]];
-                    case 3:
+                    case 4:
                         err_4 = _a.sent();
+                        return [2 /*return*/, 'cant delete product'];
+                    case 5: return [3 /*break*/, 7];
+                    case 6:
+                        err_5 = _a.sent();
                         throw new Error('Could not delete product from order : ${err}');
-                    case 4: return [2 /*return*/];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
     };
     Dashboard.prototype.updateproductquantity = function (updateproorder) {
         return __awaiter(this, void 0, void 0, function () {
-            var query3, con, result, err_5;
+            var query3, con, result, err_6, err_7;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
+                        _a.trys.push([0, 6, , 7]);
                         query3 = 'UPDATE order_product SET quantity=($1) WHERE order_id=($2) and product_id=($3) RETURNING *';
                         return [4 /*yield*/, database_provider_1["default"].connect()];
                     case 1:
                         con = _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
                         return [4 /*yield*/, con.query(query3, [
                                 updateproorder.quantity,
                                 updateproorder.order_id,
                                 updateproorder.product_id,
                             ])];
-                    case 2:
+                    case 3:
                         result = _a.sent();
                         con.release();
                         return [2 /*return*/, result.rows[0]];
-                    case 3:
-                        err_5 = _a.sent();
+                    case 4:
+                        err_6 = _a.sent();
+                        return [2 /*return*/, 'cant update product'];
+                    case 5: return [3 /*break*/, 7];
+                    case 6:
+                        err_7 = _a.sent();
                         throw new Error('Could not update product quantity : ${err}');
-                    case 4: return [2 /*return*/];
+                    case 7: return [2 /*return*/];
                 }
             });
         });

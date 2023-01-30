@@ -8,15 +8,19 @@ export type order = {
 export class Order {
     async current_orders(): Promise<order[] | string> {
         try {
+            
             const query1 = 'SELECT * FROM orders WHERE status=($1)';
             const con = await client.connect();
-            const result = await con.query(query1, ['active']);
-            if (result.rows.length === 0) {
+           
+                const result = await con.query(query1, ['active']);
+                if (result.rows.length === 0) {
+                    con.release();
+                    return 'No active orders';
+                }
                 con.release();
-                return 'No active orders';
-            }
-            con.release();
-            return result.rows;
+                return result.rows;
+                
+    
         } catch (err) {
             throw new Error('Could not load orders from database: ${err}');
         }

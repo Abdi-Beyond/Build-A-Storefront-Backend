@@ -4,7 +4,9 @@ import userRouter from './handlers/user_handler';
 import productRouter from './handlers/product_handler';
 import orderRouter from './handlers/order_handler';
 import productinorderRouter from './handlers/product_in_order';
+import dotenv from 'dotenv'
 
+dotenv.config();
 const app: express.Application = express();
 
 app.use(bodyParser.json())
@@ -16,13 +18,14 @@ productRouter(app);
 orderRouter(app);
 productRouter(app);
 productinorderRouter(app);
-if (process.env.NODE_ENV === 'test') {
-    app.listen(3000, () => {
+console.log(process.env.ENV);
+if (process.env.ENV === 'test') {
+    app.listen(50005, () => {
         console.log("starting app on: 50005");
     });
 }
-    else {
-app.listen(50000, () => {
+if (process.env.ENV === 'dev') {
+app.listen(50006, () => {
     console.log("starting app on: 0.0.0.0:3000");
 }); 
     }

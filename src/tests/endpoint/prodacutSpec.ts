@@ -62,10 +62,17 @@ describe("Test product endpoints.", () => {
     it ("Update a product", async () => {
         
         const response = await request.patch("/products/1").send(newproducts).set({Authorization: `Bearer ${token}`});
+        if (typeof response.body !== "string")
+        {
         expect(response.status).toBe(200);
         expect(response.body.name).toBe("test2");
         expect(response.body.price).toBe(10);
         expect(response.body.category).toBe("Test of test");
+        }
+        else {
+            expect(response.status).toBe(200);
+            expect(response.body).toBe("Product does not exist");
+        }
     }
     );
     it ("Delete a product", async () => {

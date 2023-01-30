@@ -23,13 +23,18 @@ export class User {
         }
     }
 
-    async show(id: number): Promise<user> {
+    async show(id: number): Promise<user | string> {
         try {
             const query2 = 'SELECT * FROM users WHERE id=($1)';
             const con = await client.connect();
             const result = await con.query(query2, [id]);
+            if (result.rows.length === 0) {
+                return 'User does not exist';
+            }
+            else{
             con.release();
             return result.rows[0];
+            }
         } catch (err) {
             throw new Error('Could not load user from database: ${err}');
         }

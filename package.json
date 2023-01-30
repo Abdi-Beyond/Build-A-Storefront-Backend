@@ -11,14 +11,12 @@
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
     "test-up": "docker-compose -f docker-compose.yml up -d",
     "test-down": "docker-compose -f docker-compose.yml down",
-    "testup": "db-migrate up",
-    "testdown": "db-migrate down",
-    "test-docker": "npm run test-up && cross-env NODE_ENV=test && npx tsc && jasmine --config=spec/support/jasmine.json && npm run test-down",
-    "test": "npm run testup && cross-env NODE_ENV=test && npx tsc && jasmine --config=spec/support/jasmine.json && npm run testdown",
-    "tsc": "tsc",
+    "test-docker": "set ENV=test && npm run test-up --env test && cross-env ENV=test && npx tsc && jasmine --config=spec/support/jasmine.json && npm run test-down --env test",
+    "test-local": "cross-env ENV=test && db-migrate up && npx tsc && jasmine --config=spec/support/jasmine.json && db-migrate down",
     "lint": "eslint ./src/**/*.ts",
     "prettier": "prettier --config .prettierrc ./src/**/*.ts --write",
     "lint_fixer": "eslint ./src/**/*.ts --fix"
+    
   },
   "repository": {
     "type": "git",

@@ -19,13 +19,19 @@ export class Product {
             throw new Error('Could not load products from database: ${err}');
         }
     }
-    async show(id: number): Promise<product> {
+    async show(id: number): Promise<product | string> {
         try {
             const query2 = 'SELECT * FROM products WHERE id=($1)';
             const con = await client.connect();
             const result = await con.query(query2, [id]);
+            if (result.rows.length === 0) {
+                con.release();
+                return 'Product does not exist';
+            }
+            else{
             con.release();
             return result.rows[0];
+            }
         } catch (err) {
             throw new Error('Could not load product from database: ${err}');
         }

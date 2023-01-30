@@ -46,7 +46,8 @@ describe("Test User endpoints.", () => {
     }
     );
     it ("Delete a user", async () => {
-        const response = await request.delete("/users/1").set({Authorization: `Bearer ${token}`});
+        const response = await request.delete("/users/2").set({Authorization: `Bearer ${token}`});
+
         expect(response.status).toBe(200);
         
     
