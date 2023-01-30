@@ -30,10 +30,9 @@ export class User {
             const result = await con.query(query2, [id]);
             if (result.rows.length === 0) {
                 return 'User does not exist';
-            }
-            else{
-            con.release();
-            return result.rows[0];
+            } else {
+                con.release();
+                return result.rows[0];
             }
         } catch (err) {
             throw new Error('Could not load user from database: ${err}');

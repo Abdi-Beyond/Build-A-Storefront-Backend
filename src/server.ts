@@ -25,7 +25,7 @@ if (process.env.ENV === 'test') {
     });
 }
 if (process.env.ENV === 'dev') {
-app.listen(50006, () => {
+app.listen(3000, () => {
     console.log("starting app on: 0.0.0.0:3000");
 }); 
     }

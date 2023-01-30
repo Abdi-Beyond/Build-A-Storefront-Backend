@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express';
 import { Dashboard, productorder } from '../services/dashboard';
 import { authorizeChecker } from '../middleware/authrize_checker_jwt';
 
-
 const dashboard = new Dashboard();
 
 const productinorder = async (_req: Request, res: Response) => {

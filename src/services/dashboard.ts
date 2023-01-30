@@ -10,7 +10,6 @@ export type productorder = {
 export class Dashboard {
     async productsinorder(): Promise<any> {
         try {
-            
             const query2 =
                 'SELECT * FROM products INNER JOIN order_product ON products.id=order_product.product_id  ORDER BY order_product.order_id';
             const con = await client.connect();
